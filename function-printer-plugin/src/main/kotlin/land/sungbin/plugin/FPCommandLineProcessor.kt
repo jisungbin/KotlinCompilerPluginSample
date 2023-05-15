@@ -13,29 +13,27 @@ import org.jetbrains.kotlin.config.CompilerConfigurationKey
 
 private const val PluginId = "land.sungbin.function.printer"
 
-internal val KEY_TAG = CompilerConfigurationKey<String>(
-    "Tags to use for logging",
-)
+internal val KEY_TAG = CompilerConfigurationKey<String>("Tags to use for logging")
 private val OPTION_TAG = CliOption(
-    optionName = "tag",
-    valueDescription = "String",
-    description = KEY_TAG.toString(),
+  optionName = "tag",
+  valueDescription = "String",
+  description = KEY_TAG.toString(),
 )
 
 @AutoService(CommandLineProcessor::class)
 class FPCommandLineProcessor : CommandLineProcessor {
-    override val pluginId = PluginId
+  override val pluginId = PluginId
 
-    override val pluginOptions = listOf(OPTION_TAG)
+  override val pluginOptions = listOf(OPTION_TAG)
 
-    override fun processOption(
-        option: AbstractCliOption,
-        value: String,
-        configuration: CompilerConfiguration,
-    ) {
-        when (val optionName = option.optionName) {
-            OPTION_TAG.optionName -> configuration.put(KEY_TAG, value)
-            else -> error("Unknown plugin option: $optionName")
-        }
+  override fun processOption(
+    option: AbstractCliOption,
+    value: String,
+    configuration: CompilerConfiguration,
+  ) {
+    when (val optionName = option.optionName) {
+      OPTION_TAG.optionName -> configuration.put(KEY_TAG, value)
+      else -> error("Unknown plugin option: $optionName")
     }
+  }
 }

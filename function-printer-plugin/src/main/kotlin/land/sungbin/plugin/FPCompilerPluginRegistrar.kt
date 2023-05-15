@@ -13,11 +13,11 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 
 @AutoService(CompilerPluginRegistrar::class)
 class FPCompilerPluginRegistrar : CompilerPluginRegistrar() {
-    override val supportsK2 = false
+  override val supportsK2 = false
 
-    override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
-        val logger = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
-        val loggingTag = requireNotNull(configuration[KEY_TAG])
-        IrGenerationExtension.registerExtension(FPIrExtension(logger, loggingTag))
-    }
+  override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
+    val logger = configuration.get(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, MessageCollector.NONE)
+    val loggingTag = requireNotNull(configuration[KEY_TAG])
+    IrGenerationExtension.registerExtension(FPIrExtension(logger, loggingTag))
+  }
 }
