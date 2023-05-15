@@ -37,9 +37,6 @@ internal class FPIrVisitor(
             }
             append(")")
         }
-        logger.report(
-            severity = CompilerMessageSeverity.WARNING,
-            message = "[$loggingTag] $render",
-        )
+        logger.report(CompilerMessageSeverity.WARNING, "[$loggingTag] $render")
     }
 }
